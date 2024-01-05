@@ -3,7 +3,7 @@ const guardrail = (mathFunction) => {
   try {
     queue.push(mathFunction());
   } catch (error) {
-    queue.push(`Error ${error}`);
+    queue.push(`${error}`);
   } finally {
     queue.push('Guardrail was processed');
   }
