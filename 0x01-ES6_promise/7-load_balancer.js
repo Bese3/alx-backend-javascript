@@ -1,6 +1,11 @@
 export default function loadBalancer(chinaDownload, USDownload) {
-  const fasterServer = Promise.any([chinaDownload, USDownload]).then(
-    (value) => value,
-  );
-  return fasterServer;
+  return Promise.any(
+    [
+      chinaDownload,
+      USDownload
+    ]
+  )
+  .then((res) => {
+    return res;
+  })
 }
