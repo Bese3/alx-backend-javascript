@@ -1,27 +1,49 @@
-/* eslint-disable no-underscore-dangle */
 export default class Currency {
   constructor(code, name) {
-    this._code = code;
-    this._name = name;
+    if (typeof code !== 'string') {
+      throw new TypeError('code must be string');
+    } else {
+      // eslint-disable-next-line no-underscore-dangle
+      this._code = code;
+    }
+    if (typeof name !== 'string') {
+      throw new TypeError('name must be string');
+    } else {
+      // eslint-disable-next-line no-underscore-dangle
+      this._name = name;
+    }
   }
 
   get code() {
+    // eslint-disable-next-line no-underscore-dangle
     return this._code;
   }
 
-  set code(value) {
-    this._code = value;
-  }
-
   get name() {
+    // eslint-disable-next-line no-underscore-dangle
     return this._name;
   }
 
-  set name(value) {
-    this._name = value;
+  set code(code) {
+    if (typeof code !== 'string') {
+      throw new TypeError('code must be string');
+    } else {
+      // eslint-disable-next-line no-underscore-dangle
+      this._code = code;
+    }
+  }
+
+  set name(name) {
+    if (typeof name !== 'string') {
+      throw new TypeError('name must be string');
+    } else {
+      // eslint-disable-next-line no-underscore-dangle
+      this._name = name;
+    }
   }
 
   displayFullCurrency() {
+    // eslint-disable-next-line no-underscore-dangle
     return `${this._name} (${this._code})`;
   }
 }
