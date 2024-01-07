@@ -1,19 +1,16 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable class-methods-use-this */
 export default class Building {
   constructor(sqft) {
-    const proto = Object.getPrototypeOf(this);
-    const superProto = Building.prototype;
-    const missing = Object.getOwnPropertyNames(superProto).find(
-      (name) =>
-        // eslint-disable-next-line no-prototype-builtins
-        typeof superProto[name] === 'function' && !proto.hasOwnProperty(name),
-    );
-    if (missing) {
-      throw new Error(
-        'Class extending Building must override evacuationWarningMessage',
-      );
+    const pro = Object.getPrototypeOf(this);
+    const superpro = Building.prototype;
+    const miss = Object.getOwnPropertyNames(superpro).find((name) =>
+      typeof superpro[name] === 'function' && !pro.hasOwnProperty(name));
+    if (miss) {
+      throw new Error('Class extending Building must override evacuationWarningMessage');
     }
     this._sqft = sqft;
   }
@@ -22,10 +19,9 @@ export default class Building {
     return this._sqft;
   }
 
-  set sqft(value) {
-    this._sqft = value;
+  set sqft(sqft) {
+    this._sqft = sqft;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   evacuationWarningMessage() {}
 }
