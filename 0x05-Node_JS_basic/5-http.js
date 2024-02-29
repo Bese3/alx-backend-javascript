@@ -50,7 +50,6 @@ module.exports = http.createServer((req, res) => {
     res.write('This is the list of our students');
     countStudents(process.argv[2])
       .then((result) => {
-        res.setHeader('Content-Type', 'text/plain');
         res.statusCode = 200;
         res.end(result);
       })
