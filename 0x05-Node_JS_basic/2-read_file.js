@@ -2,6 +2,7 @@ const fs = require('fs');
 
 module.exports = function countStudents(path) {
   try {
+    let minus = 1;
     let data = fs.readFileSync(path, 'utf8');
     data = data.split('\n');
     const fieldlist = {};
@@ -9,13 +10,16 @@ module.exports = function countStudents(path) {
       const firstName = data[i].split(',')[0];
       const field = data[i].split(',')[3];
       if (!Object.prototype.hasOwnProperty.call(fieldlist, field)) {
-        // eslint-disable-next-line no-continue
-        if (field === undefined) continue;
+        if (field === undefined) {
+          minus += 1;
+          // eslint-disable-next-line no-continue
+          continue;
+        }
         fieldlist[field] = [];
       }
       fieldlist[field].push(firstName);
     }
-    console.log(`Number of Students: ${data.length - 1}`);
+    console.log(`Number of Students: ${data.length - minus}`);
     for (const key in fieldlist) {
       if (Object.prototype.hasOwnProperty.call(fieldlist, key)) {
         console.log(`Number of Students in ${key}: ${fieldlist[key].length}. List: ${fieldlist[key].join(', ')}`);
