@@ -19,10 +19,10 @@ module.exports = function countStudents(path) {
       }
       fieldlist[field].push(firstName);
     }
-    console.log(`Number of Students: ${data.length - minus}`);
+    console.log(`Number of students: ${data.length - minus}`);
     for (const key in fieldlist) {
       if (Object.prototype.hasOwnProperty.call(fieldlist, key)) {
-        console.log(`Number of Students in ${key}: ${fieldlist[key].length}. List: ${fieldlist[key].join(', ')}`);
+        console.log(`Number of students in ${key}: ${fieldlist[key].length}. List: ${fieldlist[key].join(', ')}`);
       }
     }
   } catch (err) {
