@@ -50,10 +50,17 @@ module.exports = http.createServer((req, res) => {
     res.write('This is the list of our students');
     countStudents(process.argv[2])
       .then((result) => {
+        res.setHeader('Content-Type', 'text/plain');
+        res.statusCode = 200;
         res.end(result);
       })
       .catch((err) => {
-        console.log(err);
+        // eslint-disable-next-line no-param-reassign
+        err = String(err);
+        // eslint-disable-next-line no-param-reassign
+        err = err.replace('Error: ', '');
+        const re = `\n${err}`;
+        res.end(re);
       });
   }
 }).listen(1245);
