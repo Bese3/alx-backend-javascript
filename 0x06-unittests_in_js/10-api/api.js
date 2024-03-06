@@ -23,7 +23,7 @@ app.get('/available_payments', (req, res) => {
       paypal: false
     }
   };
-  res.send(paym);
+  res.json(paym);
 });
 
 app.post('/login', (req, res) => {
