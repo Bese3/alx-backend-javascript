@@ -3,30 +3,35 @@ const express = require('express');
 const app = express();
 const PORT = 7865;
 
+
 app.use(express.json());
 
-app.get('/', (_req, res) => {
+app.get('/', (_, res) => {
   res.send('Welcome to the payment system');
 });
 
 app.get('/cart/:id(\\d+)', (req, res) => {
   const id = req.params.id;
+  res.send(`Payment methods for cart ${id}`)
 
-  res.send(`Payment methods for cart ${id}`);
 });
 
-app.get('/available_payments', (_req, res) => {
-  res.json({ payment_methods: { credit_cards: true, paypal: false } });
+app.get('/available_payments', (req, res) => {
+  const paym = {
+    payment_methods: {
+      credit_cards: true,
+      paypal: false
+    }
+  };
+  res.send(paym);
 });
 
 app.post('/login', (req, res) => {
-  let username = '';
-
-  if (req.body) {
-    username = req.body.userName;
+  let name = '';
+  if(req.body){
+  name = req.body.userName;
   }
-
-  res.send(`Welcome ${username}`);
+  res.send(`Welcome ${name}`);
 });
 
 app.listen(PORT, () => {
